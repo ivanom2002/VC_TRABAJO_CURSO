@@ -46,6 +46,10 @@ Básicamente contamos con un script de python (control.py) que tiene distintos m
 - Pulsar cualquier otra tecla, exceptuando "Esc": Nos llevará nuevamente al modo por defecto.
 - Pulsar la tecla "Esc": El programa finalizará su ejecución.
 
+Cabe aclarar que de cara a capturar las teclas pulsadas por el usuario se ha creado un hilo, de forma que se intenta interferir lo menos posible en la ejecución del resto del programa.
+
 ### 4.Probelmas encontrados y trabajo futuro
+
+Inicialmente, para calcular la posición que debía tener el ratón en función de la posición del dedo índice se hacía una interpolación de forma que conociendo la resolución del vídeo ofrecido por la webcam y la resolución de la pantalla se trasladaba fácilmente de una a otra. Sin embargo, se detectó que había problemas para alcanzar la parte inferior de la pantalla con el ratón. Esto se debe a que a medida que bajamos la mano, MediaPipe pierde contexto de la misma y deja de detectar. Como solución hemos usado para interpolar únicamente la mitad superior del vídeo capturado, esto hace que el movimiento en vertical sea más sensible, aún así no parece afectar demasiado al manejo del ratón pero sí que nos permite acceder a la parte inferior de la pantalla.
 
 
