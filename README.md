@@ -66,4 +66,15 @@ De cara al futuro nos gustaría implementar más gestos como podrían ser despla
 
 ## Fuentes
 
+- [MediaPipe Studio](https://mediapipe-studio.webapps.google.com/home)
+- ["Hand Landmark Detection"](https://mediapipe-studio.webapps.google.com/studio/demo/hand_landmarker)
+- ["Gesture Recognition"](https://mediapipe-studio.webapps.google.com/studio/demo/gesture_recognizer)
+- [pyautogui](https://pyautogui.readthedocs.io/en/latest/)
+- [pycaw](https://github.com/AndreMiras/pycaw)
+- [screen-brightness-control](https://pypi.org/project/screen-brightness-control/)
+- [keyboard](https://pypi.org/project/keyboard/)
+- [opencv-python](https://pypi.org/project/opencv-python/)
+- [mediapipe](https://pypi.org/project/mediapipe/)
+
+
 
