@@ -1,4 +1,4 @@
-# VC_TRABAJO_CURSO
+# Trabajo de Curso de Visión por Computador
 
 ## Motivación
 
