@@ -29,12 +29,12 @@ El objetivo principal de esta propuesta es desarrollar una interfaz de usuario q
 
 El proyecto ha sido desarrollado en python aprovechando algunas de las librerías que se proveen para este lenguaje de cara a manejar distintos ajustes, a continuación se enumeran las más importantes y su utilidad dentro de este proyecto:
 
-- pyautogui: Nos permite manejar las coordenadas y eventos del ratón. Además, se utiliza también para realizar las capturas de pantalla.
-- pycaw: Nos permite acceder a los altavoces del equipo y manejar aspectos como su volumen.
-- screen-brightness-control: Nos permite ajustar el brillo de la pantalla.
-- keyboard: Nos permite capturar las teclas que se pulsan de manera que podemos cambiar el modo en el que estamos ejecutando el programa.
-- opencv-python: Nos permite caputar el vídeo de la webcam.
-- mediapipe: Nos permite detectar las manos y distintos gestos que realice el usuario con ellas.
+- [pyautogui](https://pyautogui.readthedocs.io/en/latest/): Nos permite manejar las coordenadas y eventos del ratón. Además, se utiliza también para realizar las capturas de pantalla.
+- [pycaw](https://github.com/AndreMiras/pycaw): Nos permite acceder a los altavoces del equipo y manejar aspectos como su volumen.
+- [screen-brightness-control](https://pypi.org/project/screen-brightness-control/): Nos permite ajustar el brillo de la pantalla.
+- [keyboard](https://pypi.org/project/keyboard/): Nos permite capturar las teclas que se pulsan de manera que podemos cambiar el modo en el que estamos ejecutando el programa.
+- [opencv-python](https://pypi.org/project/opencv-python/): Nos permite caputar el vídeo de la webcam.
+- [mediapipe](https://pypi.org/project/mediapipe/): Nos permite detectar las manos y distintos gestos que realice el usuario con ellas.
 
 ### 3.Desarrollo
 
@@ -59,5 +59,11 @@ Por otro lado, en un principio se pensó que el programa corriese en un único m
 Con respecto al gesto utilizado para realizar las capturas de pantalla tuvimos también algunos problemas. En un principio se planteó que la captura se hiciera al cerrar la mano, pero como la detección de MediaPipe se hace con tanta frecuencia la condición de "mano cerrada" se daba más de una vez y se hacían varias capturas sin pretenderlo. Además, notamos que las capturas de pantalla se sobreescribían al guardarse con el mismo nombre. Estos problemas se solucionaron controlando que entre captura y captura se tuviera que abrir la mano y pasara un tiempo de al menos un segundo y actualizando un contador de las capturas que se han realizado de forma que la forma en que se guardan es "screenshoot_n.png" donde n es el número de la captura. 
 
 También cabe aclarar que al empezar el proyecto tratamos de usar la detección ["Hand Landmark Detection"](https://mediapipe-studio.webapps.google.com/studio/demo/hand_landmarker) de MediaPipe. No obstante, al tratar de introducirla en nuestro código se producían muchos cortes entre las detecciones pasando incluso segundos entre una detección y la siguiente. Por tanto, esta solución no nos permitía desarrollar nuestro proyecto por lo que pasamos como ya comentamos a usar ["Gesture Recognition"](https://mediapipe-studio.webapps.google.com/studio/demo/gesture_recognizer)
+
+De cara al futuro nos gustaría implementar más gestos como podrían ser desplazar el dedo índice en horizontal para cambiar entre las distintas ventanas, gestos que nos permitan acciones como cortar y pegar, hacer zoom en la pantalla, etc. Además de como ya se ha comentado mejorar la precisión en el uso del ratón.
+
+## Conclusiones
+
+## Fuentes
 
 
