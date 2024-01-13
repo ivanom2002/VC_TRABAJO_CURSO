@@ -10,7 +10,7 @@ El objetivo principal de esta propuesta es desarrollar una interfaz de usuario q
 
 ## Descripción técnica del trabajo
 
-### 1.Creación del entorno conda
+### 1. Creación del entorno conda
 
 ```
     conda create --name mediapipe python=3.11.5
@@ -25,7 +25,7 @@ El objetivo principal de esta propuesta es desarrollar una interfaz de usuario q
     pip install screen-brightness-control
 ```
 
-### 2.Tecnologías utilizadas/Materiales no originales
+### 2. Tecnologías utilizadas/Materiales no originales
 
 El proyecto ha sido desarrollado en python aprovechando algunas de las librerías que se proveen para este lenguaje de cara a manejar distintos ajustes de un ordenador. A continuación, se enumeran las más importantes y su utilidad dentro de este proyecto:
 
@@ -36,7 +36,9 @@ El proyecto ha sido desarrollado en python aprovechando algunas de las librería
 - [opencv-python](https://pypi.org/project/opencv-python/): Nos permite caputar el vídeo de la webcam.
 - [mediapipe](https://pypi.org/project/mediapipe/): Nos permite detectar las manos y distintos gestos que realice el usuario con ellas.
 
-### 3.Desarrollo
+### 3. Desarrollo
+
+#### 3.1 Uso y funcionamiento
 
 Básicamente contamos con un script de python (control.py) que tiene distintos modos de ejecución. Por defecto, se comienza capturando la entrada de la webcam y se está en un modo "gestos". Este modo nos permite realizar distintas acciones con nuestras manos que serán detectados utilizando MediaPipe. Más concretamente su ["Gesture Recognition"](https://mediapipe-studio.webapps.google.com/studio/demo/gesture_recognizer). En la versión actual este modo de funcionamiento se detecta cuando cerramos y abrimos la mano realizando una captura de pantalla. Alternativamente se permite al usuario pulsar distintas teclas para acceder a los otros modos de funcionamiento de la siguiente forma:
 
@@ -46,9 +48,36 @@ Básicamente contamos con un script de python (control.py) que tiene distintos m
 - Pulsar cualquier otra tecla, exceptuando "Esc": Nos llevará nuevamente al modo por defecto.
 - Pulsar la tecla "Esc": El programa finalizará su ejecución.
 
-Cabe aclarar que de cara a capturar las teclas pulsadas por el usuario se ha creado un hilo, de forma que se intenta interferir lo menos posible en la ejecución del resto del programa.
+#### 3.2 Aspectos clave del código
 
-Con respecto a la estructura del código, tenemos un bucle principal que es el encargado de estar procesando la entrada de la webcam detectando así nuestras manos, sus coordenadas y otros parámetros como la distancia entre los dedos pulgar e índice. Por otro lado, tenemos las funciones encargadas de procesar la información recogida en el bucle principal ajustando así el brillo, el volumen o la posición del ratón según corresponda.
+Con respecto a la estructura del código, tenemos un bucle principal que es el encargado de estar procesando la entrada de la webcam detectando así nuestras manos, sus coordenadas y otros parámetros como la distancia entre los dedos pulgar e índice.
+
+```
+# Inicializamos el objeto de captura de video
+cap = cv2.VideoCapture(0)
+
+while cap.isOpened():
+
+    # Captura un fotograma
+    ret, frame = cap.read()
+
+    if not ret:
+        break
+
+    # Convertir el frame a RGB para la detección de manos
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    results = hands.process(frame_rgb)
+
+# Detener el bucle si se presiona la tecla 'Esc'
+    if tecla == "esc":
+        break
+
+# Liberar la captura de video y cerrar la ventana
+cap.release()
+cv2.destroyAllWindows()
+```
+
+Por otro lado, tenemos las funciones encargadas de procesar la información recogida en el bucle principal ajustando así el brillo, el volumen o la posición del ratón según corresponda.
 
 ### 4.Probelmas encontrados y trabajo futuro
 
@@ -65,6 +94,8 @@ También cabe aclarar que al empezar el proyecto tratamos de usar la detección 
 De cara al futuro nos gustaría implementar más gestos como podrían ser desplazar el dedo índice en horizontal para cambiar entre las distintas ventanas, gestos que nos permitan acciones como cortar y pegar, hacer zoom en la pantalla, etc. Además de como ya se ha comentado mejorar la precisión en el uso del ratón.
 
 ## Conclusiones
+
+Este proyecto puede representar un pequeño paso hacia la integración de la visión por computadora en la vida cotidiana. Al enfocarnos en la detección de movimientos de manos a través de la webcam, hemos demostrado cómo esta tecnología puede abordar problemas del día a día, acercando a las personas a la utilidad práctica de esta tecnología. Además, al desarrollar una interfaz de usuario que permite manejar el ratón, ajustar el brillo y volumen, y realizar acciones comunes, estamos contribuyendo al avance de interacciones más intuitivas y accesibles entre humanos y máquinas. 
 
 ## Fuentes
 
