@@ -8,7 +8,7 @@ En la actualidad, la creciente demanda de interacciones fluidas entre humanos y 
 
 ## Objetivos
 
-El objetivo principal de esta propuesta es desarrollar una interfaz de usuario que permita manejar el ratón de un ordenador y realizar ajustes esenciales como ajustar el brillo de la pantalla y el volumen o acciones cotidianas como el sacar una captura de pantalla a través de la detección precisa de movimientos de nuestras manos utilizando la webcam.  
+El objetivo principal de esta propuesta es desarrollar una interfaz de usuario que permita manejar el ratón de un ordenador, realizar ajustes esenciales como modificar el brillo de la pantalla y el volumen, o acciones cotidianas como el sacar una captura de pantalla a través de la detección precisa de movimientos de nuestras manos utilizando la webcam. 
 
 ## Descripción técnica del trabajo
 
