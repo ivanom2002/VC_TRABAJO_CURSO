@@ -2,6 +2,21 @@
 
 <img src="carátula.jpeg">
 
+## Índice
+
+- [Motivación](https://github.com/ivanom2002/VC_TRABAJO_CURSO#motivaci%C3%B3n)
+- [Objetivos](https://github.com/ivanom2002/VC_TRABAJO_CURSO#objetivos)
+- [Descripción técnica del trabajo](https://github.com/ivanom2002/VC_TRABAJO_CURSO#descripci%C3%B3n-t%C3%A9cnica-del-trabajo)
+    - [Creación del entorno conda](https://github.com/ivanom2002/VC_TRABAJO_CURSO#1-creaci%C3%B3n-del-entorno-conda)
+    - [Tecnologías utilizadas/Materiales no originales](https://github.com/ivanom2002/VC_TRABAJO_CURSO#2-tecnolog%C3%ADas-utilizadasmateriales-no-originales)
+    - [Desarrollo](https://github.com/ivanom2002/VC_TRABAJO_CURSO#3-desarrollo)
+        - [Uso y funcionamiento](https://github.com/ivanom2002/VC_TRABAJO_CURSO?tab=readme-ov-file#31-uso-y-funcionamiento)
+        - [Aspectos clave del código](https://github.com/ivanom2002/VC_TRABAJO_CURSO?tab=readme-ov-file#32-aspectos-clave-del-c%C3%B3digo)
+    - [Problemas encontrados y trabajo futuro](https://github.com/ivanom2002/VC_TRABAJO_CURSO?tab=readme-ov-file#4-problemas-encontrados-y-trabajo-futuro)
+- [Conclusiones](https://github.com/ivanom2002/VC_TRABAJO_CURSO?tab=readme-ov-file#conclusiones)
+- [Fuentes](https://github.com/ivanom2002/VC_TRABAJO_CURSO?tab=readme-ov-file#fuentes)
+
+
 ## Motivación
 
 En la actualidad, la creciente demanda de interacciones fluidas entre humanos y máquinas nos lleva a la necesidad de interfaces que sean naturales y accesibles. Este proyecto surge como respuesta a dicho desafío, buscando crear una forma de interacción humano-máquina que no sólo sea eficiente, sino también intuitiva, sencilla y, en última instancia, entretenida al uso. Aprovechamos algunos de los conocimientos adquiridos durante la asignatura de Visión por Computador para explorar nuevas fronteras en la mejora de la experiencia de usuario en entornos informáticos. 
