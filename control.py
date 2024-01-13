@@ -104,7 +104,7 @@ while cap.isOpened():
             pinky_mcp_y = int(hand_landmarks.landmark[mpHands.HandLandmark.PINKY_MCP].y * frame.shape[0])
 
             if (index_tip_y > index_mcp_y and ring_tip_y > ring_mcp_y and middle_tip_y > middle_mcp_y and pinky_tip_y > pinky_mcp_y):
-                if time.time() - last_screenshot > 1 and hand_was_open:
+                if time.time() - last_screenshot > 1 and hand_was_open and tecla != "r" and tecla != "b" and tecla != "v":
                     screenshoot()
                     num_screenshoots += 1
                     last_screenshot = time.time()
