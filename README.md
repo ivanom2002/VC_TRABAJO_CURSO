@@ -201,13 +201,13 @@ hilo_captura = threading.Thread(target=capturar_tecla, daemon=True)
 hilo_captura.start()
 ```
 
-### 4. Probelmas encontrados y trabajo futuro
+### 4. Problemas encontrados y trabajo futuro
 
 Inicialmente, para calcular la posición que debía tener el ratón en función de la posición del dedo índice se hacía una interpolación de forma que, conociendo la resolución del vídeo ofrecido por la webcam y la resolución de la pantalla se trasladaba fácilmente de una a otra. Sin embargo, se detectó que había problemas para alcanzar la parte inferior de la pantalla con el ratón. Esto se debe a que a medida que bajamos la mano, MediaPipe pierde contexto de la misma y deja de detectar. Como solución hemos usado para interpolar únicamente la mitad superior del vídeo capturado, esto hace que el movimiento en vertical sea más sensible, aún así no parece afectar demasiado al manejo del ratón pero sí que nos permite acceder a la parte inferior de la pantalla.
 
 Otro de los problemas detectados con respecto al ratón es que a la hora de intentar hacer click cerrando la pinza entre los dedos pulgar e índice, se desplaza también el ratón y por tanto no es tan sencillo hacer click en un lugar de forma muy precisa. Como trabajo futuro se plantearía que el click se haga en la coordenada que se encuentre a la distancia media entre ambos dedos.
 
-Por otro lado, en un principio se pensó que el programa corriese en un único modo y que en función de cada gesto del usuario se ejecutaran las distintas funciones. Sin embargo, esto limitaba la funcionalidad de nuestro progama ya que no nos permitía repetir gestos que son muy intuitivos y aplicables a distintos controles como pueden ser el del brillo y el volumen. Por lo tanto, se optó como ya se ha comentado anteriormente en tener distintos modos a los que se accede pulsando distintas teclas.
+Por otro lado, en un principio se pensó que el programa corriese en un único modo y que en función de cada gesto del usuario se ejecutaran las distintas funciones. Sin embargo, esto limitaba la funcionalidad de nuestro programa ya que, no nos permitía repetir gestos que son muy intuitivos y aplicables a distintos controles como pueden ser el del brillo y el volumen. Por lo tanto, se optó como ya se ha comentado anteriormente en tener distintos modos a los que se accede pulsando distintas teclas.
 
 Con respecto al gesto utilizado para realizar las capturas de pantalla tuvimos también algunos problemas. En un principio se planteó que la captura se hiciera al cerrar la mano, pero como la detección de MediaPipe se hace con tanta frecuencia la condición de "mano cerrada" se daba más de una vez y se hacían varias capturas sin pretenderlo. Además, notamos que las capturas de pantalla se sobreescribían al guardarse con el mismo nombre. Estos problemas se solucionaron controlando que entre captura y captura se tuviera que abrir la mano y pasara un tiempo de al menos un segundo y actualizando un contador de las capturas que se han realizado de forma que el nombre de las capturas es "screenshoot_n.png" donde n es el número de la captura. 
 
