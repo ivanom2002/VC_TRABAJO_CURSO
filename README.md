@@ -38,6 +38,8 @@ El proyecto ha sido desarrollado en python aprovechando algunas de las librería
 - [opencv-python](https://pypi.org/project/opencv-python/): Nos permite caputar el vídeo de la webcam.
 - [mediapipe](https://pypi.org/project/mediapipe/): Nos permite detectar las manos y distintos gestos que realice el usuario con ellas.
 
+Aclarar también que se ha utilizado [Bing Chat](https://www.bing.com/search) para generar la imagen de carátula.
+
 ### 3. Desarrollo
 
 #### 3.1 Uso y funcionamiento
@@ -228,6 +230,7 @@ Este proyecto puede representar un pequeño paso hacia la integración de la vis
 - [keyboard](https://pypi.org/project/keyboard/)
 - [opencv-python](https://pypi.org/project/opencv-python/)
 - [mediapipe](https://pypi.org/project/mediapipe/)
+- [Bing Chat](https://www.bing.com/search)
 
 
 
