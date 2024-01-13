@@ -112,6 +112,10 @@ if results.multi_hand_landmarks:
         distance = np.sqrt((thumb_tip_x - index_tip_x)**2 + (thumb_tip_y - index_tip_y)**2)
 ```
 
+Para una mejor intuición de los puntos que se están utilizando en la detección se adjunta la siguiente imagen:
+
+[![Puntos que se detectan sobre la mano](hand-landmarks.png)](https://developers.google.com/mediapipe/solutions/vision/gesture_recognizer#models)
+
 Por otro lado, tenemos las funciones encargadas de procesar la información recogida en el bucle principal ajustando así el brillo, el volumen o la posición del ratón según corresponda.
 
 - Función que ajusta el volumen: Recibe como parámetro de entrada la distancia calculada en el bucle principal, accede a los altavoces del dispositivo y haciendo una interpolación de la distancia entre dos valores obtenidos experimentalmente ajusta el volumen.
