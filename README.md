@@ -50,9 +50,9 @@ Básicamente contamos con un script de python (control.py) que tiene distintos m
 
 #### 3.2 Aspectos clave del código
 
-Con respecto a la estructura del código, tenemos un bucle principal que es el encargado de estar procesando la entrada de la webcam detectando así nuestras manos, sus coordenadas y otros parámetros como la distancia entre los dedos pulgar e índice.
+Con respecto a la estructura del código, tenemos un bucle principal que es el encargado de estar procesando la entrada de la webcam detectando así nuestras manos:
 
-```
+```python
 # Inicializamos el objeto de captura de video
 cap = cv2.VideoCapture(0)
 
