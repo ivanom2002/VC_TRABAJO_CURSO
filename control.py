@@ -127,6 +127,8 @@ while cap.isOpened():
                 volume_control(distance)
               elif (tecla == "b"):
                 brightness_control(distance)
+              else:
+                continue
 
     # Detener el bucle si se presiona la tecla 'Esc'
     if tecla == "esc":
