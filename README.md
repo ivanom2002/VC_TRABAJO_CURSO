@@ -1,6 +1,6 @@
 # Trabajo de Curso de Visión por Computador
 
-[![Imagen carátula](carátula.jpeg)]
+<img src="carátula.jpeg" width="600" height="600">
 
 ## Motivación
 
