@@ -79,7 +79,7 @@ cv2.destroyAllWindows()
 
 Dentro de este mismo bucle principal obtenemos las coordenadas que nos interesan de la mano detectada y calculamos la distancia entre las yemas de los dedos pulgar e índice que será utilizada por distintas funciones de nuestro código:
 
-```
+```python
 # Verificar si se detectaron manos
 if results.multi_hand_landmarks:
     for hand_landmarks in results.multi_hand_landmarks:
