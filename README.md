@@ -77,7 +77,121 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
+Dentro de este mismo bucle principal obtenemos las coordenadas que nos interesan de la mano detectada y calculamos la distancia entre las yemas de los dedos pulgar e índice que será utilizada por distintas funciones de nuestro código:
+
+```
+# Verificar si se detectaron manos
+if results.multi_hand_landmarks:
+    for hand_landmarks in results.multi_hand_landmarks:
+        # Obtener las coordenadas del dedo índice
+        index_tip_x = int(hand_landmarks.landmark[mpHands.HandLandmark.INDEX_FINGER_TIP].x * frame.shape[1])
+        index_tip_y = int(hand_landmarks.landmark[mpHands.HandLandmark.INDEX_FINGER_TIP].y * frame.shape[0])
+        index_mcp_y = int(hand_landmarks.landmark[mpHands.HandLandmark.INDEX_FINGER_MCP].y * frame.shape[0])
+
+        # Obtener las coordenadas del dedo pulgar
+        thumb_tip_x = int(hand_landmarks.landmark[mpHands.HandLandmark.THUMB_TIP].x * frame.shape[1])
+        thumb_tip_y = int(hand_landmarks.landmark[mpHands.HandLandmark.THUMB_TIP].y * frame.shape[0])
+        thumb_mcp_y = int(hand_landmarks.landmark[mpHands.HandLandmark.THUMB_MCP].y * frame.shape[0])
+
+        # Obtener las coordenadas del dedo corazon
+        middle_tip_x = int(hand_landmarks.landmark[mpHands.HandLandmark.MIDDLE_FINGER_TIP].x * frame.shape[1])
+        middle_tip_y = int(hand_landmarks.landmark[mpHands.HandLandmark.MIDDLE_FINGER_TIP].y * frame.shape[0])
+        middle_mcp_y = int(hand_landmarks.landmark[mpHands.HandLandmark.MIDDLE_FINGER_MCP].y * frame.shape[0])
+
+        # Obtener las coordenadas del dedo anular
+        ring_tip_x = int(hand_landmarks.landmark[mpHands.HandLandmark.RING_FINGER_TIP].x * frame.shape[1])
+        ring_tip_y = int(hand_landmarks.landmark[mpHands.HandLandmark.RING_FINGER_TIP].y * frame.shape[0])
+        ring_mcp_y = int(hand_landmarks.landmark[mpHands.HandLandmark.RING_FINGER_MCP].y * frame.shape[0])
+
+        # Obtener las coordenadas del dedo meñique
+        pinky_tip_x = int(hand_landmarks.landmark[mpHands.HandLandmark.PINKY_TIP].x * frame.shape[1])
+        pinky_tip_y = int(hand_landmarks.landmark[mpHands.HandLandmark.PINKY_TIP].y * frame.shape[0])
+        pinky_mcp_y = int(hand_landmarks.landmark[mpHands.HandLandmark.PINKY_MCP].y * frame.shape[0])
+
+        # Calcular la distancia entre el pulgar y el índice
+        distance = np.sqrt((thumb_tip_x - index_tip_x)**2 + (thumb_tip_y - index_tip_y)**2)
+```
+
 Por otro lado, tenemos las funciones encargadas de procesar la información recogida en el bucle principal ajustando así el brillo, el volumen o la posición del ratón según corresponda.
+
+- Función que ajusta el volumen: Recibe como parámetro de entrada la distancia calculada en el bucle principal, accede a los altavoces del dispositivo y haciendo una interpolación de la distancia entre dos valores obtenidos experimentalmente ajusta el volumen.
+
+```python
+def volume_control(distance):
+    min_distance = 40
+    max_distance = 200  
+
+    devices = AudioUtilities.GetSpeakers()
+    interface = devices.Activate(
+        IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    
+    volume = cast(interface, POINTER(IAudioEndpointVolume))
+    new_volume = max(0, min((distance - min_distance) / (max_distance - min_distance), 1))
+    volume.SetMasterVolumeLevelScalar(new_volume, None)
+```
+- Función que ajusta el brillo: Se comporta de forma similar a la función anterior.
+
+```python
+def brightness_control(distance):
+    min_distance = 40
+    max_distance = 200
+    new_brightness = max(0, min((distance - min_distance) / (max_distance - min_distance), 1))
+    sbc.set_brightness(new_brightness * 100)
+```
+
+- Función que maneja el ratón: Recibe como parámetros de entrada unos valores x e y que han sido calculados en el bucle principal a partir de la posición del dedo índice y una distancia que nos permitirá saber si hay que hacer click o no.
+
+```python
+def mouse_control(x, y, distance):
+    if (distance > 40):
+      pyautogui.moveTo(x, y)
+    else:
+      pyautogui.click()
+```
+```python
+#Cálculo de x e y realizado en el bucle principal, interpolamos entre las coordenadas del frame y las coordenadas de pantalla
+x = 1920 - (((index_tip_x ) * pyautogui.size()[0]) // (frame.shape[0]))
+y = ((index_tip_y * pyautogui.size()[1]) * 2) // frame.shape[1]
+```
+
+- Función que realiza las capturas de pantalla: Se encarga de asignar el nombre correspondiente y capturar la pantalla guardando una imagen con el nombre asignado.
+
+```python
+def screenshoot():
+    global num_screenshoots
+    screenshot_name = f"screenshoot_{num_screenshoots}.png"
+    pyautogui.screenshot(screenshot_name)
+```
+
+- Detección del gesto de abrir y cerrar la mano para sacar las capturas de pantalla: se realiza en el bucle principal y además gestiona el hecho de que no se hagan múltiples capturas de pantalla simultáneamente.
+
+```python
+if (index_tip_y > index_mcp_y and ring_tip_y > ring_mcp_y and middle_tip_y > middle_mcp_y and pinky_tip_y > pinky_mcp_y):
+    if time.time() - last_screenshot > 1 and hand_was_open:
+        screenshoot()
+        num_screenshoots += 1
+        last_screenshot = time.time()
+    hand_was_open = False
+else:
+    hand_was_open = True
+```
+
+- Captura de las teclas que seleccionan el modo de funcionamiento: se tiene una función que está escuchando los eventos del teclado y un hilo que ejecuta dicha función
+
+```python
+def capturar_tecla():
+    global tecla
+    while True:
+        try:
+            event = keyboard.read_event(suppress=True)
+            if event.event_type == keyboard.KEY_DOWN:
+                tecla = event.name
+        except KeyboardInterrupt:
+            break
+
+hilo_captura = threading.Thread(target=capturar_tecla, daemon=True)
+hilo_captura.start()
+```
 
 ### 4.Probelmas encontrados y trabajo futuro
 
