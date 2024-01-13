@@ -27,7 +27,7 @@ El objetivo principal de esta propuesta es desarrollar una interfaz de usuario q
 
 ### 2.Tecnologías utilizadas/Materiales no originales
 
-El proyecto ha sido desarrollado en python aprovechando algunas de las librerías que se proveen para este lenguaje de cara a manejar distintos ajustes, a continuación se enumeran las más importantes y su utilidad dentro de este proyecto:
+El proyecto ha sido desarrollado en python aprovechando algunas de las librerías que se proveen para este lenguaje de cara a manejar distintos ajustes de un ordenador. A continuación, se enumeran las más importantes y su utilidad dentro de este proyecto:
 
 - [pyautogui](https://pyautogui.readthedocs.io/en/latest/): Nos permite manejar las coordenadas y eventos del ratón. Además, se utiliza también para realizar las capturas de pantalla.
 - [pycaw](https://github.com/AndreMiras/pycaw): Nos permite acceder a los altavoces del equipo y manejar aspectos como su volumen.
