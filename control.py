@@ -19,7 +19,7 @@ hand_was_open = False
 num_screenshoots = 0
 
 # Inicializamos el objeto de captura de video
-cap = cv2.VideoCapture(0)  # Puedes cambiar 0 por el nombre del archivo de video si lo estás leyendo desde un archivo
+cap = cv2.VideoCapture(0)  
 
 def capturar_tecla():
     global tecla
