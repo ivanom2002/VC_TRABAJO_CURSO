@@ -112,7 +112,7 @@ if results.multi_hand_landmarks:
         distance = np.sqrt((thumb_tip_x - index_tip_x)**2 + (thumb_tip_y - index_tip_y)**2)
 ```
 
-Para una mejor intuición de los puntos que se están utilizando en la detección se adjunta la siguiente imagen:
+Para una mejor intuición de los puntos que se están utilizando en la detección obsérvese la siguiente imagen:
 
 [![Puntos que se detectan sobre la mano](hand-landmarks.png)](https://developers.google.com/mediapipe/solutions/vision/gesture_recognizer#models)
 
