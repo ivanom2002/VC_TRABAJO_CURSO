@@ -71,7 +71,7 @@ while cap.isOpened():
     if not ret:
         break
 
-    # Convertir a escala de grises para la detección de manos
+    # Convertir el frame a RGB para la detección de manos
     frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     results = hands.process(frame_rgb)
     
